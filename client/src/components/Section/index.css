@@ -1,0 +1,101 @@
+.InfoContainer {
+  color: #fff;
+  background: #010606;
+}
+
+.LightBg {
+  background: #f9f9f9;
+}
+
+.InfoWrapper {
+  display: grid;
+  z-index: 1;
+  height: 700px;
+  width: 100%;
+  max-width: 1100px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0 24px;
+  justify-content: center;
+}
+
+.InfoRow {
+  display: grid;
+  grid-auto-columns: minmax(auto, 1fr);
+  align-items: center;
+  grid-template-areas: 'col1 col2';
+}
+
+.ImgStart {
+  grid-template-areas: 'col2 col1';
+}
+
+.Column1 {
+  margin-bottom: 15px;
+  padding: 0 24px;
+  grid-area: col1;
+}
+
+.Column2 {
+  margin-bottom: 15px;
+  padding: 0 24px;
+  grid-area: col2;
+}
+
+.TextWrapper {
+  max-width: 540px;
+  padding-top: 0;
+  padding-bottom: 60px;
+}
+
+.TopLine {
+  color: #01bf71;
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.Heading {
+  margin-bottom: 24px;
+  font-size: 48px;
+  /* line-weight: 1.1; */
+  line-height: 1.6;
+  font-weight: 600;
+  color: #010606;
+}
+
+.LightText {
+  color: #f7f8fa;
+}
+
+.Subtitle {
+  max-width: 440px;
+  margin-bottom: 35px;
+  font-size: 18px;
+  /* line-weight: 24px; */
+  line-height: 1.6;
+  color: #f7f8fa;
+}
+
+.DarkText {
+  color: #010606;
+}
+
+.BtnWrap {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.ImgWrap {
+  max-width: 555px;
+  height: 100%;
+}
+
+.Img {
+  width: 100%;
+  margin: 0 0 10px 0;
+  padding-right: 0;
+}

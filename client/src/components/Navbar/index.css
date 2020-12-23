@@ -1,0 +1,73 @@
+.Navbar {
+  background: transparent;
+  height: 80px;
+  position: fixed;
+  width: 100%;
+  justify-content: center;
+  z-index: 10;
+}
+
+.NavStick {
+  background-color: #000;
+}
+
+.NavContainer {
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  padding: 0px 24px;
+  min-width: 90%;
+}
+
+.NavLogo {
+  color: #fff;
+  font-size: 1.8rem;
+  align-items: center;
+  justify-self: flex-start;
+  font-family: 'Pacifico', sans-serif;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 12px;
+  flex: 15%;
+}
+:hover {
+  color: #01bf71;
+}
+
+.NavMenu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  text-align: center;
+  padding: 12px 24px;
+  margin: auto;
+  flex: 65%;
+  justify-content: center;
+}
+
+.NavItem {
+  color: white;
+  text-decoration: none;
+  height: 100%;
+  align-items: center;
+  padding: 0 3.5rem;
+  font-size: 1.3rem;
+  font-family: 'Roboto Condensed', cursive;
+}
+/* :hover {
+  color: #01bf71;
+} */
+
+.ButtonWrapper {
+  justify-content: center;
+  margin: auto;
+  flex: 20%;
+  display: flex;
+}
+
+.text {
+  color: #01bf71;
+  padding-right: 1.5rem;
+  text-transform: uppercase;
+  font-size: 1 rem;
+}
