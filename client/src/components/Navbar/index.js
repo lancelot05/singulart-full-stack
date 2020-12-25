@@ -4,9 +4,10 @@ import Button from '@material-ui/core/Button';
 import './index.css';
 import Login from '../Login';
 import Signup from '../Signup';
-import { ButtonGroup } from '@material-ui/core';
+import { ButtonGroup, ThemeProvider } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import Logout from '../Logout';
+import { theme } from '../../MaterialUiTheme';
 
 const Navbar = () => {
   const [scrollNav, setScrollNav] = useState(false);
@@ -55,50 +56,52 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`Navbar ${scrollNav ? 'NavStick' : ''}`}>
-      <div className="NavContainer">
-        <a href="/" className="NavLogo">
-          Singulart
-        </a>
-        <ul className="NavMenu">
-          <a href="/" className="NavItem">
-            Artworks
+    <ThemeProvider theme={theme}>
+      <nav className={`Navbar ${scrollNav ? 'NavStick' : ''}`}>
+        <div className="NavContainer">
+          <a href="/" className="NavLogo">
+            Singulart
           </a>
-          <a href="/" className="NavItem">
-            Artists
-          </a>
-          <a href="/" className="NavItem">
-            About
-          </a>
-          <a href="/" className="NavItem">
-            Contact
-          </a>
-        </ul>
-        <div className="ButtonWrapper">
-          {name ? (
-            <>
-              <p className="text">Hello,&nbsp; {name}</p>
-              <Logout />
-            </>
-          ) : (
-            <>
-              <ButtonGroup
-                variant="text"
-                color="secondary"
-                aria-label="text primary button group"
-              >
-                <Button onClick={handleClickOpenLogin}>Login</Button>
-                <Button onClick={handleClickOpenSignup}>Signup</Button>
-              </ButtonGroup>
+          <ul className="NavMenu">
+            <a href="/upload" className="NavItem">
+              Artworks
+            </a>
+            <a href="/" className="NavItem">
+              Artists
+            </a>
+            <a href="/" className="NavItem">
+              About
+            </a>
+            <a href="/" className="NavItem">
+              Contact
+            </a>
+          </ul>
+          <div className="ButtonWrapper">
+            {name ? (
+              <>
+                <p className="text">Hello,&nbsp; {name}</p>
+                <Logout />
+              </>
+            ) : (
+              <>
+                <ButtonGroup
+                  variant="text"
+                  color="primary"
+                  aria-label="text primary button group"
+                >
+                  <Button onClick={handleClickOpenLogin}>Login</Button>
+                  <Button onClick={handleClickOpenSignup}>Signup</Button>
+                </ButtonGroup>
 
-              <Login open={openLogin} handleClose={handleCloseLogin} />
+                <Login open={openLogin} handleClose={handleCloseLogin} />
 
-              <Signup open={openSignup} handleClose={handleCloseSignup} />
-            </>
-          )}
+                <Signup open={openSignup} handleClose={handleCloseSignup} />
+              </>
+            )}
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </ThemeProvider>
   );
 };
 

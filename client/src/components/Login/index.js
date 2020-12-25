@@ -12,6 +12,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../actions/authActions';
 import Alert from '@material-ui/lab/Alert';
 import './index.css';
+import { ThemeProvider } from '@material-ui/core';
+import { theme } from '../../MaterialUiTheme';
 
 const Login = ({ open, handleClose }) => {
   const [email, setEmail] = useState('');
@@ -74,61 +76,64 @@ const Login = ({ open, handleClose }) => {
     handleClose();
   };
   return (
-    <Dialog
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="form-dialog-title"
-    >
-      <DialogTitle id="form-dialog-title">Log In To Your Account</DialogTitle>
-      <DialogContent>
-        <DialogContentText>
-          Login to experience the ultimate home of most satisfying artworks
-        </DialogContentText>
-        <TextField
-          autoFocus
-          margin="dense"
-          id="email"
-          label="Email Address"
-          type="email"
-          placeholder="JohnDoe@singulart.com"
-          fullWidth
-          value={email}
-          onChange={handleChange}
-          required
-        />
-        <TextField
-          margin="dense"
-          id="password"
-          label="Password"
-          type="password"
-          fullWidth
-          required
-          value={password}
-          onChange={handleChange}
-        />
-        {errorMsg && (
-          <Alert
-            style={{ marginTop: '18px' }}
-            variant="filled"
-            severity="error"
-          >
-            {errorMsg}
-          </Alert>
-        )}
-      </DialogContent>
-      <DialogActions>
-        <GoogleLogin
-          clientId="636884656263-1g3od5t2m3o1hrsuh2i9sg8njqpg81m2.apps.googleusercontent.com"
-          buttonText="Log in with Google"
-          onSuccess={handleLogin}
-          onFailure={handleClose}
-          cookiePolicy={'single_host_origin'}
-        />
-        <Button variant="contained" color="secondary" onClick={handleSubmit}>
-          Login
-        </Button>
-      </DialogActions>
-    </Dialog>
+    <ThemeProvider theme={theme}>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogTitle id="form-dialog-title">Log In To Your Account</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Login to experience the ultimate home of most satisfying artworks
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="email"
+            label="Email Address"
+            type="email"
+            placeholder="JohnDoe@singulart.com"
+            fullWidth
+            value={email}
+            onChange={handleChange}
+            required
+          />
+          <TextField
+            margin="dense"
+            id="password"
+            label="Password"
+            type="password"
+            fullWidth
+            required
+            value={password}
+            onChange={handleChange}
+          />
+          {errorMsg && (
+            <Alert
+              style={{ marginTop: '18px' }}
+              variant="filled"
+              severity="error"
+            >
+              {errorMsg}
+            </Alert>
+          )}
+        </DialogContent>
+        <DialogActions>
+          <GoogleLogin
+            clientId="636884656263-1g3od5t2m3o1hrsuh2i9sg8njqpg81m2.apps.googleusercontent.com"
+            buttonText="Log in with Google"
+            onSuccess={handleLogin}
+            onFailure={handleClose}
+            cookiePolicy={'single_host_origin'}
+            theme="dark"
+          />
+          <Button variant="contained" color="primary" onClick={handleSubmit}>
+            Login
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </ThemeProvider>
   );
 };
 

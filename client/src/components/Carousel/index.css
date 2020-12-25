@@ -22,9 +22,6 @@
   display: grid;
   place-items: center;
 }
-:hover {
-  color: #01bf71;
-}
 
 .CarouselImg .middleLeft {
   flex: 20%;
@@ -71,7 +68,4 @@
   cursor: pointer;
   display: grid;
   place-items: center;
-}
-:hover {
-  color: #01bf71;
 }

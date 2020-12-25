@@ -30,9 +30,6 @@
   padding: 12px;
   flex: 15%;
 }
-:hover {
-  color: #01bf71;
-}
 
 .NavMenu {
   display: flex;
@@ -54,9 +51,6 @@
   font-size: 1.3rem;
   font-family: 'Roboto Condensed', cursive;
 }
-/* :hover {
-  color: #01bf71;
-} */
 
 .ButtonWrapper {
   justify-content: center;

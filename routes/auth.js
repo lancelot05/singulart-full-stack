@@ -71,6 +71,8 @@ authRouter.post('/signup', (req, res) => {
 authRouter.post('/signin', (req, res) => {
   const { email, password } = req.body;
 
+  console.log(req.body);
+
   if (!email || !password) {
     return res.status(400).json({ msg: 'Please enter all the fields' });
   }
@@ -87,7 +89,7 @@ authRouter.post('/signin', (req, res) => {
       jwt.sign(
         { id: user._id },
         process.env.JWT_SECRET,
-        { expiresIn: 3600 },
+        { expiresIn: 7200 },
         (err, token) => {
           if (err) throw err;
           res.json({

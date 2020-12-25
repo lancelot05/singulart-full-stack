@@ -13,6 +13,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../actions/authActions';
 
 import Alert from '@material-ui/lab/Alert';
+import { ThemeProvider } from '@material-ui/core';
+import { theme } from '../../MaterialUiTheme';
 
 const Signup = ({ open, handleClose }) => {
   const [email, setEmail] = useState('');
@@ -84,83 +86,88 @@ const Signup = ({ open, handleClose }) => {
     // store returned user somehow
   };
   return (
-    <Dialog
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="form-dialog-title"
-    >
-      <DialogTitle id="form-dialog-title">Create Your New Account</DialogTitle>
-      <DialogContent>
-        <DialogContentText>
-          Signup NOW to experience the ultimate home of most satisfying artworks
-        </DialogContentText>
-        <TextField
-          autoFocus
-          margin="dense"
-          id="email"
-          label="Email Address"
-          type="email"
-          placeholder="JohnDoe@singulart.com"
-          fullWidth
-          required
-          value={email}
-          onChange={handleChange}
-        />
-        <TextField
-          margin="dense"
-          id="firstName"
-          label="First Name"
-          type="text"
-          placeholder="John"
-          fullWidth
-          required
-          value={firstName}
-          onChange={handleChange}
-        />
-        <TextField
-          margin="dense"
-          id="lastName"
-          label="Last Name"
-          type="text"
-          placeholder="Doe"
-          fullWidth
-          value={lastName}
-          onChange={handleChange}
-        />
-        <TextField
-          margin="dense"
-          id="password"
-          label="Password"
-          type="password"
-          fullWidth
-          required
-          value={password}
-          onChange={handleChange}
-        />
-        {errorMsg && (
-          <Alert
-            style={{ marginTop: '18px' }}
-            variant="filled"
-            severity="error"
-          >
-            {errorMsg}
-          </Alert>
-        )}
-      </DialogContent>
-      <DialogActions>
-        <GoogleLogin
-          clientId="636884656263-1g3od5t2m3o1hrsuh2i9sg8njqpg81m2.apps.googleusercontent.com"
-          buttonText="Continue with Google"
-          onSuccess={handleLogin}
-          onFailure={handleClose}
-          cookiePolicy={'single_host_origin'}
-          theme="dark"
-        />
-        <Button variant="contained" color="secondary" onClick={handleSubmit}>
-          Sign Up
-        </Button>
-      </DialogActions>
-    </Dialog>
+    <ThemeProvider theme={theme}>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogTitle id="form-dialog-title">
+          Create Your New Account
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Signup NOW to experience the ultimate home of most satisfying
+            artworks
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="email"
+            label="Email Address"
+            type="email"
+            placeholder="JohnDoe@singulart.com"
+            fullWidth
+            required
+            value={email}
+            onChange={handleChange}
+          />
+          <TextField
+            margin="dense"
+            id="firstName"
+            label="First Name"
+            type="text"
+            placeholder="John"
+            fullWidth
+            required
+            value={firstName}
+            onChange={handleChange}
+          />
+          <TextField
+            margin="dense"
+            id="lastName"
+            label="Last Name"
+            type="text"
+            placeholder="Doe"
+            fullWidth
+            value={lastName}
+            onChange={handleChange}
+          />
+          <TextField
+            margin="dense"
+            id="password"
+            label="Password"
+            type="password"
+            fullWidth
+            required
+            value={password}
+            onChange={handleChange}
+          />
+          {errorMsg && (
+            <Alert
+              style={{ marginTop: '18px' }}
+              variant="filled"
+              severity="error"
+            >
+              {errorMsg}
+            </Alert>
+          )}
+        </DialogContent>
+        <DialogActions>
+          <GoogleLogin
+            clientId="636884656263-1g3od5t2m3o1hrsuh2i9sg8njqpg81m2.apps.googleusercontent.com"
+            buttonText="Continue with Google"
+            onSuccess={handleLogin}
+            onFailure={handleClose}
+            cookiePolicy={'single_host_origin'}
+            theme="dark"
+          />
+          <Button variant="contained" color="primary" onClick={handleSubmit}>
+            Sign Up
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </ThemeProvider>
   );
 };
 

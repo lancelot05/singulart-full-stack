@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 import { loadUser } from './actions/authActions';
+import UploadPage from './pages/UploadPage';
 
 function App() {
   useEffect(() => {
@@ -20,6 +21,7 @@ function App() {
         <Router>
           <Route path="/" component={HomePage} exact />
           <Route path="/login" component={LoginPage} exact />
+          <Route path="/upload" component={UploadPage} exact />
         </Router>
       </div>
     </Provider>
