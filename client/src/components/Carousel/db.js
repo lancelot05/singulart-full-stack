@@ -1,8 +1,9 @@
 exports.ImageStore = [
   {
     title: 'Ronaldo',
-    img:
-      'https://images.pexels.com/photos/2246476/pexels-photo-2246476.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+    // img:
+    //   'https://images.pexels.com/photos/2246476/pexels-photo-2246476.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+    img: '/uploads/1608979650325Painting.jpg',
   },
   {
     title: 'Messi',

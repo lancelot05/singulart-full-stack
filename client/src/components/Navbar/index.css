@@ -61,7 +61,7 @@
 
 .text {
   color: #01bf71;
-  padding-right: 1.5rem;
   text-transform: uppercase;
+  margin: auto 6px;
   font-size: 1 rem;
 }

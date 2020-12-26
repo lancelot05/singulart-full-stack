@@ -8,7 +8,7 @@ const storage = multer.diskStorage({
     done(null, './uploads');
   },
   filename: (req, file, done) => {
-    done(null, Date.now() + file.originalname);
+    done(null, Date.now() + file.originalname.replace(/\s+/g, ''));
   },
 });
 
@@ -25,6 +25,7 @@ const upload = multer({ storage: storage, fileFilter: fileFilter }).single(
 );
 
 var artworkRouter = express.Router();
+// artworkRouter.use(fileUpload());
 
 artworkRouter
   .route('/')
@@ -34,43 +35,30 @@ artworkRouter
       .then((artwork) => {
         res.status(200).send(artwork);
       })
-      .catch((err) => res.status(400).send({ msg: err }));
+      .catch((err) => res.status(400).json({ msg: err }));
   })
-  .post((req, res, next) => {
-    if (!req.file) {
-      return res.status(400).send('No File Uploaded');
+
+  .post(auth, upload, (req, res, next) => {
+    const { title, desc, price, category, isFramed, artist } = req.body;
+    if (!title || !price || !category || !artist) {
+      return res.status(400).json({ msg: 'Please enter all the fields' });
     }
-    upload(req, res, (err) => {
-      if (err) {
-        console.log(err);
-        if (err.msg === 'Invalid file format') {
-          return res.status(400).send(err.msg);
-        } else {
-          return res.status(500).send('Server Error');
-        }
-      } else {
-        console.log(req.file);
-        const { title, desc, price, category, isFramed, artist } = req.body;
-        if (!title || !price || !category || !artist) {
-          return res.status(400).json({ msg: 'Please enter all the fields' });
-        }
-        Artwork.create({
-          title: title,
-          desc: desc,
-          category: category,
-          price: price,
-          isFramed: isFramed,
-          artworkImg: req.file.path,
-          artist: artist,
-        })
-          .then((artwork) => {
-            res.status(201).send(artwork);
-          })
-          .catch((err) => {
-            res.status(500).send(err);
-          });
-      }
-    });
+    console.log(req.body);
+    Artwork.create({
+      title: title,
+      desc: desc,
+      category: category,
+      price: price,
+      isFramed: isFramed,
+      artworkImg: req.file.path.replace(/\\/g, '/'),
+      artist: artist,
+    })
+      .then((artwork) => {
+        res.status(201).send(artwork);
+      })
+      .catch((err) => {
+        res.status(500).json({ msg: err });
+      });
   });
 
 module.exports = artworkRouter;

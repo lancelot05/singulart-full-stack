@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import SendIcon from '@material-ui/icons/Send';
 import ClearIcon from '@material-ui/icons/Clear';
@@ -17,6 +17,9 @@ import {
   ThemeProvider,
 } from '@material-ui/core';
 import { theme } from '../../MaterialUiTheme';
+import { useDispatch, useSelector } from 'react-redux';
+import { postArtworks } from '../../actions/artworkActions';
+import Alert from '@material-ui/lab/Alert';
 
 const artworkTypes = [
   {
@@ -40,7 +43,13 @@ const UploadForm = () => {
   const [desc, setDesc] = useState('');
   const [isFramed, setIsFramed] = useState(false);
   const [category, setCategory] = useState(artworkTypes[0].value);
-  const [artworkImg, setArtworkImg] = useState(null);
+  const [artworkImg, setArtworkImg] = useState('');
+  const [errorMsg, setErrorMsg] = useState(null);
+
+  const error = useSelector((state) => state.error);
+  const user = useSelector((state) => state.auth.user);
+  const artwork = useSelector((state) => state.artwork.artwork);
+  const dispatch = useDispatch();
 
   const handleClose = () => {
     setOpen(false);
@@ -66,6 +75,36 @@ const UploadForm = () => {
     }
   };
 
+  const handleFile = (e) => {
+    setArtworkImg(e.target.files[0]);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('price', parseFloat(price));
+    formData.append('desc', desc);
+    formData.append('isFramed', isFramed);
+    formData.append('category', category);
+    formData.append('artworkImg', artworkImg);
+    formData.append('artist', user.id || user._id);
+    dispatch(postArtworks(formData));
+  };
+
+  useEffect(() => {
+    const handleRegister = (error, artwork) => {
+      if (error) {
+        if (error.id === 'ARTWORKS_POST_FAIL') {
+          setErrorMsg(error.msg.msg);
+        } else {
+          setErrorMsg(null);
+        }
+      }
+    };
+    handleRegister(error, artwork);
+  }, [error, artwork, handleClose]);
+
   return (
     <ThemeProvider theme={theme}>
       <div className="Container">
@@ -86,6 +125,15 @@ const UploadForm = () => {
           >
             <DialogTitle>Upload your work</DialogTitle>
             <DialogContent>
+              {errorMsg && (
+                <Alert
+                  style={{ marginTop: '18px' }}
+                  variant="filled"
+                  severity="error"
+                >
+                  {errorMsg}
+                </Alert>
+              )}
               <DialogContentText>
                 Upload your lovely artworks at a reasonable price.
               </DialogContentText>
@@ -141,7 +189,11 @@ const UploadForm = () => {
               <DialogContentText style={{ paddingTop: '18px' }}>
                 Upload an JPEG or PNG Type File
               </DialogContentText>
-              <input type="file" style={{ paddingTop: '4px' }} />
+              <input
+                type="file"
+                style={{ paddingTop: '4px' }}
+                onChange={handleFile}
+              />
               <FormControlLabel
                 label="Check If Your Artwork Is Framed"
                 control={
@@ -166,7 +218,7 @@ const UploadForm = () => {
                 variant="contained"
                 color="primary"
                 endIcon={<SendIcon />}
-                onClick={handleClose}
+                onClick={handleSubmit}
               >
                 Submit
               </Button>

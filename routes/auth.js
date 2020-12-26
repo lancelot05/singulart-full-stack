@@ -55,6 +55,7 @@ authRouter.post('/signup', (req, res) => {
                   user: {
                     firstName: user.firstName,
                     email: user.email,
+                    id: user._id,
                   },
                 });
               }
@@ -97,6 +98,7 @@ authRouter.post('/signin', (req, res) => {
             user: {
               firstName: user.firstName,
               email: user.email,
+              id: user._id,
             },
           });
         }

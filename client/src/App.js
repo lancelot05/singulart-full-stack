@@ -9,10 +9,12 @@ import store from './store';
 
 import { loadUser } from './actions/authActions';
 import UploadPage from './pages/UploadPage';
+import { loadArtworks } from './actions/artworkActions';
 
 function App() {
   useEffect(() => {
     store.dispatch(loadUser());
+    store.dispatch(loadArtworks());
   });
 
   return (
