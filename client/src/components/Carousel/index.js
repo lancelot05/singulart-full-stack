@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { CircularProgress } from '@material-ui/core';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../MaterialUiTheme';
+import ArtworkCard from '../ArtworkCard';
 
 const Carousel = () => {
   const artwork = useSelector((state) => state.artwork.artwork);
@@ -48,29 +49,14 @@ const Carousel = () => {
               <div className="left" onClick={() => goBack(current, prev, next)}>
                 <ArrowBackIosIcon fontSize="large" />
               </div>
-              <div
-                className="middleLeft"
-                style={{
-                  backgroundImage: `url(${artwork[prev].artworkImg})`,
-                }}
-              >
-                <h1>{artwork[prev].title}</h1>
+              <div className="middleLeft">
+                <ArtworkCard info={artwork[prev]} />
               </div>
-              <div
-                className="middle"
-                style={{
-                  backgroundImage: `url(${artwork[current].artworkImg})`,
-                }}
-              >
-                <h1>{artwork[current].title}</h1>
+              <div className="middle">
+                <ArtworkCard info={artwork[current]} />
               </div>
-              <div
-                className="middleRight"
-                style={{
-                  backgroundImage: `url(${artwork[next].artworkImg})`,
-                }}
-              >
-                <h1>{artwork[next].title}</h1>
+              <div className="middleRight">
+                <ArtworkCard info={artwork[next]} />
               </div>
               <div
                 className="right"

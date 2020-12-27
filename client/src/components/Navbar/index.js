@@ -16,6 +16,7 @@ const Navbar = () => {
   const [name, setName] = useState(null);
 
   const user = useSelector((state) => state.auth.user);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   useEffect(() => {
     const handleUserName = (user) => {
@@ -63,7 +64,12 @@ const Navbar = () => {
             Singulart
           </a>
           <ul className="NavMenu">
-            <a href="/upload" className="NavItem">
+            {isAuthenticated && (
+              <a href="/upload" className="NavItem">
+                Upload
+              </a>
+            )}
+            <a href="/" className="NavItem">
               Artworks
             </a>
             <a href="/" className="NavItem">
