@@ -11,9 +11,10 @@ import {
 import { clearErrors, returnErrors } from './errorActions';
 import Axios from 'axios';
 
+// SETTING HEADER CONFIG
+
 export const tokenConfig = (getState) => {
   const token = getState().auth.token;
-  // console.log(token);
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -22,27 +23,28 @@ export const tokenConfig = (getState) => {
   if (token) {
     config.headers['x-auth-token'] = token;
   }
-  // console.log(config);
   return config;
 };
+
+// LOAD THE CURRENT LOGGED IN USER
 
 export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
 
   Axios.get('/api/auth/user', tokenConfig(getState))
     .then((res) => {
-      // console.log(res.data);
       dispatch({
         type: USER_LOADED,
         payload: res.data,
       });
     })
     .catch((err) => {
-      // console.log(err);
       dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({ type: AUTH_ERROR });
     });
 };
+
+// REGISTER NEW USER
 
 export const register = ({ firstName, lastName, email, password }) => (
   dispatch
@@ -53,10 +55,8 @@ export const register = ({ firstName, lastName, email, password }) => (
     },
   };
   const body = JSON.stringify({ firstName, lastName, email, password });
-  // console.log(body);
   Axios.post('/api/auth/signup', body, config)
     .then((res) => {
-      // console.log(res.data);
       dispatch({
         type: REGISTER_SUCCESS,
         payload: res.data,
@@ -73,6 +73,8 @@ export const register = ({ firstName, lastName, email, password }) => (
     });
 };
 
+// LOGIN USER
+
 export const login = ({ email, password }) => (dispatch) => {
   const config = {
     headers: {
@@ -80,10 +82,8 @@ export const login = ({ email, password }) => (dispatch) => {
     },
   };
   const body = JSON.stringify({ email, password });
-  // console.log(body);
   Axios.post('/api/auth/signin', body, config)
     .then((res) => {
-      // console.log(res.data);
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data,
@@ -99,6 +99,32 @@ export const login = ({ email, password }) => (dispatch) => {
       });
     });
 };
+
+// GOOGLE AUTHENTICATION
+
+export const googleAuth = (token) => (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+  Axios.post('/api/auth/google/v2', { token: token }, config)
+    .then((res) => {
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data,
+      });
+      dispatch(clearErrors());
+    })
+    .catch((err) => {
+      dispatch(
+        returnErrors(err.response.data, err.response.status, 'LOGIN_FAIL')
+      );
+      dispatch({ type: LOGIN_FAIL });
+    });
+};
+
+// LOGOUT USER
 
 export const logout = () => {
   return {

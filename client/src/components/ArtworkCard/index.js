@@ -11,7 +11,7 @@ const ArtworkCard = ({ info }) => {
           alt="Card image cap"
         />
         <div className="card-body">
-          <h5 className="card-title">{info.title}</h5>
+          <h2 className="card-title">{info.title}</h2>
           <p className="card-text">
             Uploaded By :&nbsp;{info.artist.firstName}
           </p>

@@ -10,7 +10,7 @@ import Axios from 'axios';
 import { GoogleLogin } from 'react-google-login';
 import './index.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { register } from '../../actions/authActions';
+import { googleAuth, register } from '../../actions/authActions';
 
 import Alert from '@material-ui/lab/Alert';
 import { ThemeProvider } from '@material-ui/core';
@@ -60,7 +60,6 @@ const Signup = ({ open, handleClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(email, password, firstName, lastName);
     const newUser = {
       email,
       password,
@@ -71,18 +70,7 @@ const Signup = ({ open, handleClose }) => {
   };
 
   const handleLogin = async (googleData) => {
-    const res = await Axios.post(
-      '/api/auth/google/v2',
-
-      { token: googleData.tokenId },
-
-      {
-        headers: { 'Content-Type': 'application/json' },
-      }
-    );
-    const data = await res.data;
-    localStorage.setItem('token', data.token);
-    handleClose();
+    dispatch(googleAuth(googleData.tokenId));
     // store returned user somehow
   };
   return (

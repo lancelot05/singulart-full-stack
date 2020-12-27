@@ -111,14 +111,11 @@ authRouter.post('/signin', (req, res) => {
 
 authRouter.post('/google/v2', async (req, res, done) => {
   const { token } = req.body;
-  console.log(token);
   const ticket = await client.verifyIdToken({
     idToken: token,
     audience: process.env.GOOGLE_CLIENT_ID,
   });
-  console.log(ticket);
   const { given_name, family_name, email, picture, sub } = ticket.getPayload();
-  console.log(given_name, family_name, email, picture, sub);
 
   const newUser = new User({
     firstName: given_name,
@@ -126,6 +123,7 @@ authRouter.post('/google/v2', async (req, res, done) => {
     googleId: sub,
     photo: picture,
   });
+
   try {
     let user = await User.findOne({ googleId: sub });
     if (user) {
@@ -140,6 +138,7 @@ authRouter.post('/google/v2', async (req, res, done) => {
             user: {
               firstName: user.firstName,
               email: user.email,
+              id: user._id,
             },
           });
         }
@@ -157,6 +156,7 @@ authRouter.post('/google/v2', async (req, res, done) => {
             user: {
               firstName: user.firstName,
               email: user.email,
+              id: user._id,
             },
           });
         }

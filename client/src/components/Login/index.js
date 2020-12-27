@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import Axios from 'axios';
 import { GoogleLogin } from 'react-google-login';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../actions/authActions';
+import { googleAuth, login } from '../../actions/authActions';
 import Alert from '@material-ui/lab/Alert';
 import './index.css';
 import { ThemeProvider } from '@material-ui/core';
@@ -54,7 +54,6 @@ const Login = ({ open, handleClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(email, password, firstName, lastName);
     const newUser = {
       email,
       password,
@@ -63,17 +62,7 @@ const Login = ({ open, handleClose }) => {
   };
 
   const handleLogin = async (googleData) => {
-    await Axios.post(
-      '/api/auth/google/v2',
-
-      { token: googleData.tokenId },
-
-      {
-        headers: { 'Content-Type': 'application/json' },
-      }
-    );
-
-    handleClose();
+    dispatch(googleAuth(googleData.tokenId));
   };
   return (
     <ThemeProvider theme={theme}>
