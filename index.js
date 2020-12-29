@@ -4,12 +4,12 @@ var express = require('express');
 var mongoose = require('mongoose');
 const morgan = require('morgan');
 const userRouter = require('./routes/userRouter');
-const session = require('express-session');
+// const session = require('express-session');
 const passport = require('passport');
 const authRouter = require('./routes/auth');
 const cors = require('cors');
-const User = require('./models/User');
 const artworkRouter = require('./routes/artworkRouter');
+const path = require('path');
 require('./config/passport')(passport);
 require('dotenv/config');
 
@@ -52,6 +52,13 @@ app.use('/api/authenticated', (req, res) => {
 app.use('/api/users', userRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/artworks', artworkRouter);
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 // END OF ROUTERS
 

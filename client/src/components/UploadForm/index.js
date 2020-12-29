@@ -49,7 +49,6 @@ const UploadForm = () => {
   const error = useSelector((state) => state.error);
   const user = useSelector((state) => state.auth.user);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const artwork = useSelector((state) => state.artwork.artwork);
   const dispatch = useDispatch();
 
   const handleClose = () => {
