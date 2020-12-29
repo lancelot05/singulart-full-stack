@@ -5,12 +5,12 @@ var mongoose = require('mongoose');
 const morgan = require('morgan');
 const userRouter = require('./routes/userRouter');
 // const session = require('express-session');
-const passport = require('passport');
+// const passport = require('passport');
 const authRouter = require('./routes/auth');
 const cors = require('cors');
 const artworkRouter = require('./routes/artworkRouter');
 const path = require('path');
-require('./config/passport')(passport);
+// require('./config/passport')(passport);
 require('dotenv/config');
 
 // END OF IMPORTS
