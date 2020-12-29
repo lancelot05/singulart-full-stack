@@ -1,28 +1,100 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import { useDispatch, useSelector } from 'react-redux';
+import { addFavorite, removeFavorite } from '../../actions/artworkActions';
+import Alert from '@material-ui/lab/Alert';
 
 const ArtworkCard = ({ info }) => {
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const error = useSelector((state) => state.error);
+  const favorites = useSelector((state) => {
+    if (state.auth.isAuthenticated) {
+      return state.auth.user.favorites;
+    } else {
+      return [];
+    }
+  });
+
+  const favIds = [];
+
+  favorites.map((doc) => favIds.push(doc.artwork));
+
+  const dispatch = useDispatch();
+
+  const [err, setErr] = useState(null);
+
+  const artId = info._id;
+
+  const handleFavorite = (e) => {
+    e.preventDefault();
+    dispatch(addFavorite(artId));
+  };
+
+  const handleRemove = (e) => {
+    e.preventDefault();
+    dispatch(removeFavorite(artId));
+  };
+
+  useEffect(() => {
+    const handleErrors = (error) => {
+      if (error.id === 'ADD_FAVORITE_FAIL') {
+        setErr(error.msg.msg);
+      } else {
+        setErr(null);
+      }
+    };
+    handleErrors(error);
+  }, [error]);
+
   return (
     <>
-      <div className="card" style={{ width: '368px', height: '100%' }}>
+      <div className="card" style={{ width: '368px', height: '496px' }}>
         <img
           className="card-img-top"
           style={{ height: '18rem' }}
           src={info.artworkImg}
-          alt="Card image cap"
+          alt={info.title}
         />
         <div className="card-body">
           <h2 className="card-title">{info.title}</h2>
           <p className="card-text">
             Uploaded By :&nbsp;{info.artist.firstName}
           </p>
-          <p className="card-text">₹&nbsp;{info.price}</p>
-          <a
-            href="#"
-            className="btn "
-            style={{ backgroundColor: '#01bf71', fontWeight: 'bold' }}
+          <p className="card-text">
+            {info.price === 0 ? <>FREE OF COST</> : <>₹&nbsp;{info.price}</>}
+          </p>
+          <button
+            className={`btn ${
+              info.price === 0 || !isAuthenticated ? 'disabled' : ''
+            }`}
+            // style={{ backgroundColor: '#01bf71', fontWeight: 'bold' }}
+            style={
+              !favIds.includes(info._id)
+                ? { backgroundColor: '#01bf71' }
+                : { backgroundColor: '#FC390E' }
+            }
+            onClick={favIds.includes(info._id) ? handleRemove : handleFavorite}
           >
-            Add To Favorites
-          </a>
+            {!isAuthenticated ? (
+              <>Login to add this item to favorites</>
+            ) : favIds.includes(info._id) ? (
+              <>Remove From Favorites</>
+            ) : (
+              <>
+                <FavoriteIcon />
+                &nbsp;&nbsp;Add To Favorites
+              </>
+            )}
+          </button>
+          {err && (
+            <Alert
+              style={{ marginTop: '18px' }}
+              variant="filled"
+              severity="error"
+            >
+              {err}
+            </Alert>
+          )}
         </div>
       </div>
     </>

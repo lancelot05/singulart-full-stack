@@ -1,5 +1,16 @@
 var mongoose = require('mongoose');
 
+const FavoriteSchema = new mongoose.Schema({
+  artwork: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Artwork',
+  },
+  addedAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
 const UserSchema = new mongoose.Schema({
   firstName: {
     type: String,
@@ -25,6 +36,7 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
   },
+  favorites: [FavoriteSchema],
 });
 
 module.exports = mongoose.model('User', UserSchema);

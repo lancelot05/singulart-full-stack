@@ -10,6 +10,7 @@ import store from './store';
 import { loadUser } from './actions/authActions';
 import UploadPage from './pages/UploadPage';
 import { loadArtworks } from './actions/artworkActions';
+import GalleryPage from './pages/GalleryPage';
 
 function App() {
   useEffect(() => {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/" component={HomePage} exact />
           <Route path="/login" component={LoginPage} exact />
           <Route path="/upload" component={UploadPage} exact />
+          <Route path="/gallery" component={GalleryPage} exact />
         </Router>
       </div>
     </Provider>

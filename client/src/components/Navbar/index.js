@@ -69,7 +69,7 @@ const Navbar = () => {
                 Upload
               </a>
             )}
-            <a href="/" className="NavItem">
+            <a href="/gallery" className="NavItem">
               Artworks
             </a>
             <a href="/" className="NavItem">

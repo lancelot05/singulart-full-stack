@@ -93,7 +93,7 @@ const UploadForm = () => {
   };
 
   useEffect(() => {
-    const handleRegister = (error, artwork) => {
+    const handleRegister = (error) => {
       if (error) {
         if (error.id === 'ARTWORKS_POST_FAIL') {
           setErrorMsg(error.msg.msg);
@@ -102,8 +102,8 @@ const UploadForm = () => {
         }
       }
     };
-    handleRegister(error, artwork);
-  }, [error, artwork, handleClose]);
+    handleRegister(error);
+  }, [error]);
 
   return (
     <ThemeProvider theme={theme}>

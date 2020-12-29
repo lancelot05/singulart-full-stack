@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './index.css';
-import { ImageStore } from './db';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { useSelector } from 'react-redux';
@@ -42,7 +41,7 @@ const Carousel = () => {
         <div className="CarouselImg">
           {isLoading || !artwork ? (
             <div className="SpinnerWrapper">
-              <CircularProgress color="primary" />
+              <CircularProgress color="inherit" />
             </div>
           ) : (
             <>

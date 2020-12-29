@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import { loadUser, tokenConfig } from './authActions';
 import { clearErrors, returnErrors } from './errorActions';
 import {
   ARTWORKS_LOADED,
@@ -6,6 +7,10 @@ import {
   ARTWORKS_LOADING_FAIL,
   ARTWORKS_POST_FAIL,
   ARTWORKS_POST_SUCCESS,
+  ADD_FAVORITE_FAIL,
+  ADD_FAVORITE_SUCCESS,
+  REMOVE_FAVORITE_FAIL,
+  REMOVE_FAVORITE_SUCCESS,
 } from './types';
 
 export const loadArtworks = () => (dispatch, getState) => {
@@ -13,7 +18,6 @@ export const loadArtworks = () => (dispatch, getState) => {
 
   Axios.get('/api/artworks')
     .then((res) => {
-      console.log(res);
       dispatch({
         type: ARTWORKS_LOADED,
         payload: res.data,
@@ -26,18 +30,6 @@ export const loadArtworks = () => (dispatch, getState) => {
 };
 
 export const postArtworks = (formData) => (dispatch, getState) => {
-  // const body = {
-  //   title: title,
-  //   price: price,
-  //   desc: desc,
-  //   isFramed: isFramed,
-  //   category: category,
-  //   artworkImg: artworkImg,
-  //   artist: artist,
-  // };
-  for (var key of formData.entries()) {
-    console.log(key[0] + ', ' + key[1]);
-  }
   Axios.post('/api/artworks', formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
@@ -60,5 +52,51 @@ export const postArtworks = (formData) => (dispatch, getState) => {
         )
       );
       dispatch({ type: ARTWORKS_POST_FAIL });
+    });
+};
+
+export const addFavorite = (id) => (dispatch, getState) => {
+  Axios.post('/api/artworks/favorite/', { id: id }, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: ADD_FAVORITE_SUCCESS,
+        payload: res.data,
+      });
+      dispatch(clearErrors());
+      dispatch(loadArtworks());
+      dispatch(loadUser());
+    })
+    .catch((err) => {
+      dispatch(
+        returnErrors(
+          err.response.data,
+          err.response.status,
+          'ADD_FAVORITE_FAIL'
+        )
+      );
+      dispatch({ type: ADD_FAVORITE_FAIL });
+    });
+};
+
+export const removeFavorite = (id) => (dispatch, getState) => {
+  Axios.delete(`/api/artworks/favorite/${id}`, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: REMOVE_FAVORITE_SUCCESS,
+        payload: res.data,
+      });
+      dispatch(clearErrors());
+      dispatch(loadArtworks());
+      dispatch(loadUser());
+    })
+    .catch((err) => {
+      dispatch(
+        returnErrors(
+          err.response.data,
+          err.response.status,
+          'REMOVE_FAVORITE_FAIL'
+        )
+      );
+      dispatch({ type: REMOVE_FAVORITE_FAIL });
     });
 };

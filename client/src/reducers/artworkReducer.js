@@ -1,9 +1,13 @@
 import {
+  ADD_FAVORITE_FAIL,
+  ADD_FAVORITE_SUCCESS,
   ARTWORKS_LOADED,
   ARTWORKS_LOADING,
   ARTWORKS_LOADING_FAIL,
   ARTWORKS_POST_FAIL,
   ARTWORKS_POST_SUCCESS,
+  REMOVE_FAVORITE_FAIL,
+  REMOVE_FAVORITE_SUCCESS,
 } from '../actions/types';
 
 const initialState = {
@@ -25,6 +29,9 @@ export default function (state = initialState, action) {
         artwork: action.payload,
       };
     case ARTWORKS_LOADING_FAIL:
+    case ARTWORKS_POST_FAIL:
+    case ADD_FAVORITE_FAIL:
+    case REMOVE_FAVORITE_FAIL:
       return {
         ...state,
         artwork: null,
@@ -36,11 +43,12 @@ export default function (state = initialState, action) {
         artwork: action.payload,
         isLoading: false,
       };
-    case ARTWORKS_POST_FAIL:
+    case ADD_FAVORITE_SUCCESS:
+    case REMOVE_FAVORITE_SUCCESS:
       return {
         ...state,
-        artwork: null,
         isLoading: false,
+        artwork: action.payload,
       };
     default:
       return state;

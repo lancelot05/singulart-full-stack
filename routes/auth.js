@@ -52,11 +52,7 @@ authRouter.post('/signup', (req, res) => {
                 if (err) throw err;
                 res.json({
                   token,
-                  user: {
-                    firstName: user.firstName,
-                    email: user.email,
-                    id: user._id,
-                  },
+                  user,
                 });
               }
             );
@@ -95,11 +91,7 @@ authRouter.post('/signin', (req, res) => {
           if (err) throw err;
           res.json({
             token,
-            user: {
-              firstName: user.firstName,
-              email: user.email,
-              id: user._id,
-            },
+            user,
           });
         }
       );
@@ -122,6 +114,7 @@ authRouter.post('/google/v2', async (req, res, done) => {
     lastName: family_name,
     googleId: sub,
     photo: picture,
+    email: email,
   });
 
   try {
@@ -178,7 +171,6 @@ authRouter.get(
     failureRedirect: '/',
   }),
   (req, res) => {
-    console.log(res);
     res.redirect('/api/users');
   }
 );
