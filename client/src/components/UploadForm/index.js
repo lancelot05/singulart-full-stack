@@ -48,6 +48,7 @@ const UploadForm = () => {
 
   const error = useSelector((state) => state.error);
   const user = useSelector((state) => state.auth.user);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const artwork = useSelector((state) => state.artwork.artwork);
   const dispatch = useDispatch();
 
@@ -109,121 +110,127 @@ const UploadForm = () => {
     <ThemeProvider theme={theme}>
       <div className="Container">
         <div className="Wrapper">
-          <h1 className="H1">Upload your Artworks</h1>
-          <Button
-            variant="contained"
-            color="primary"
-            startIcon={<CloudUploadIcon />}
-            onClick={handleOpen}
-          >
-            Upload
-          </Button>
-          <Dialog
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="form-dialog-title"
-          >
-            <DialogTitle>Upload your work</DialogTitle>
-            <DialogContent>
-              {errorMsg && (
-                <Alert
-                  style={{ marginTop: '18px' }}
-                  variant="filled"
-                  severity="error"
-                >
-                  {errorMsg}
-                </Alert>
-              )}
-              <DialogContentText>
-                Upload your lovely artworks at a reasonable price.
-              </DialogContentText>
-              <TextField
-                autoFocus
-                id="title"
-                label="Title"
-                margin="dense"
-                type="text"
-                fullWidth
-                required
-                value={title}
-                onChange={handleChange}
-              />
-              <TextField
-                id="desc"
-                label="Description"
-                margin="dense"
-                multiline
-                rows={3}
-                type="text"
-                fullWidth
-                value={desc}
-                onChange={handleChange}
-              />
-              <TextField
-                id="price"
-                label="Price"
-                type="number"
-                required
-                value={price}
-                onChange={handleChange}
-                margin="dense"
-              />
-              <TextField
-                margin="dense"
-                id="category"
-                label="Category"
-                select
-                fullWidth
-                helperText="Please Select Type Of Your Artwork"
-                value={category}
-                onChange={(e) => {
-                  setCategory(e.target.value);
-                }}
-              >
-                {artworkTypes.map((option) => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-              <DialogContentText style={{ paddingTop: '18px' }}>
-                Upload an JPEG or PNG Type File
-              </DialogContentText>
-              <input
-                type="file"
-                style={{ paddingTop: '4px' }}
-                onChange={handleFile}
-              />
-              <FormControlLabel
-                label="Check If Your Artwork Is Framed"
-                control={
-                  <Checkbox
-                    color="primary"
-                    checked={isFramed}
-                    onChange={(e) => setIsFramed(e.target.checked)}
-                  />
-                }
-              />
-            </DialogContent>
-            <DialogActions>
-              <Button
-                variant="contained"
-                color="secondary"
-                startIcon={<ClearIcon />}
-                onClick={handleClose}
-              >
-                Cancel
-              </Button>
+          {isAuthenticated ? (
+            <>
+              <h1 className="H1">Upload your Artworks</h1>
               <Button
                 variant="contained"
                 color="primary"
-                endIcon={<SendIcon />}
-                onClick={handleSubmit}
+                startIcon={<CloudUploadIcon />}
+                onClick={handleOpen}
               >
-                Submit
+                Upload
               </Button>
-            </DialogActions>
-          </Dialog>
+              <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="form-dialog-title"
+              >
+                <DialogTitle>Upload your work</DialogTitle>
+                <DialogContent>
+                  {errorMsg && (
+                    <Alert
+                      style={{ marginTop: '18px' }}
+                      variant="filled"
+                      severity="error"
+                    >
+                      {errorMsg}
+                    </Alert>
+                  )}
+                  <DialogContentText>
+                    Upload your lovely artworks at a reasonable price.
+                  </DialogContentText>
+                  <TextField
+                    autoFocus
+                    id="title"
+                    label="Title"
+                    margin="dense"
+                    type="text"
+                    fullWidth
+                    required
+                    value={title}
+                    onChange={handleChange}
+                  />
+                  <TextField
+                    id="desc"
+                    label="Description"
+                    margin="dense"
+                    multiline
+                    rows={3}
+                    type="text"
+                    fullWidth
+                    value={desc}
+                    onChange={handleChange}
+                  />
+                  <TextField
+                    id="price"
+                    label="Price"
+                    type="number"
+                    required
+                    value={price}
+                    onChange={handleChange}
+                    margin="dense"
+                  />
+                  <TextField
+                    margin="dense"
+                    id="category"
+                    label="Category"
+                    select
+                    fullWidth
+                    helperText="Please Select Type Of Your Artwork"
+                    value={category}
+                    onChange={(e) => {
+                      setCategory(e.target.value);
+                    }}
+                  >
+                    {artworkTypes.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+                  <DialogContentText style={{ paddingTop: '18px' }}>
+                    Upload an JPEG or PNG Type File
+                  </DialogContentText>
+                  <input
+                    type="file"
+                    style={{ paddingTop: '4px' }}
+                    onChange={handleFile}
+                  />
+                  <FormControlLabel
+                    label="Check If Your Artwork Is Framed"
+                    control={
+                      <Checkbox
+                        color="primary"
+                        checked={isFramed}
+                        onChange={(e) => setIsFramed(e.target.checked)}
+                      />
+                    }
+                  />
+                </DialogContent>
+                <DialogActions>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    startIcon={<ClearIcon />}
+                    onClick={handleClose}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    endIcon={<SendIcon />}
+                    onClick={handleSubmit}
+                  >
+                    Submit
+                  </Button>
+                </DialogActions>
+              </Dialog>
+            </>
+          ) : (
+            <h1 className="H1"> Sign Up to Upload your Artworks</h1>
+          )}
         </div>
       </div>
     </ThemeProvider>

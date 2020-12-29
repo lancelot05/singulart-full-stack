@@ -128,11 +128,7 @@ authRouter.post('/google/v2', async (req, res, done) => {
           if (err) throw err;
           res.json({
             token,
-            user: {
-              firstName: user.firstName,
-              email: user.email,
-              id: user._id,
-            },
+            user,
           });
         }
       );
