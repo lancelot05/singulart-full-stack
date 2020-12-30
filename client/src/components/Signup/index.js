@@ -141,7 +141,7 @@ const Signup = ({ open, handleCloseSignup }) => {
           )}
         </DialogContent>
         <DialogActions>
-          <GoogleLogin
+          {/* <GoogleLogin
             clientId="636884656263-1g3od5t2m3o1hrsuh2i9sg8njqpg81m2.apps.googleusercontent.com"
             buttonText="Continue with Google"
             onSuccess={handleLogin}
@@ -150,7 +150,14 @@ const Signup = ({ open, handleCloseSignup }) => {
             }}
             cookiePolicy={'single_host_origin'}
             theme="dark"
-          />
+          /> */}
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleCloseSignup}
+          >
+            Cancel
+          </Button>
           <Button variant="contained" color="primary" onClick={handleSubmit}>
             Sign Up
           </Button>
