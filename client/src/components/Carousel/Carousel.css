@@ -26,7 +26,6 @@
   flex: 20%;
   height: 80%;
   margin: auto 24px;
-  opacity: 50%;
   display: grid;
   place-items: center;
 }
@@ -34,7 +33,6 @@
   flex: 30%;
   height: 80%;
   margin: auto 24px;
-  opacity: 100%;
   display: grid;
   place-items: center;
 }
@@ -42,7 +40,6 @@
   flex: 20%;
   height: 80%;
   margin: auto 24px;
-  opacity: 50%;
   display: grid;
   place-items: center;
 }
