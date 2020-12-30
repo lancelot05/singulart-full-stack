@@ -2,17 +2,15 @@ import React, { useEffect, useState } from 'react';
 // import { Button } from '../Button';
 import Button from '@material-ui/core/Button';
 import './Navbar.css';
-import Login from '../Login';
-import Signup from '../Signup';
+
 import { ButtonGroup, ThemeProvider } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import Logout from '../Logout';
 import { theme } from '../../MaterialUiTheme';
+import AuthButton from '../AuthButton';
 
 const Navbar = () => {
   const [scrollNav, setScrollNav] = useState(false);
-  const [openLogin, setOpenLogin] = useState(false);
-  const [openSignup, setOpenSignup] = useState(false);
   const [name, setName] = useState(null);
 
   const user = useSelector((state) => state.auth.user);
@@ -29,20 +27,6 @@ const Navbar = () => {
 
     handleUserName(user);
   }, [user]);
-
-  const handleClickOpenLogin = () => {
-    setOpenLogin(true);
-  };
-  const handleClickOpenSignup = () => {
-    setOpenSignup(true);
-  };
-
-  const handleCloseLogin = () => {
-    setOpenLogin(false);
-  };
-  const handleCloseSignup = () => {
-    setOpenSignup(false);
-  };
 
   const changeNav = () => {
     if (window.scrollY >= 80) {
@@ -90,21 +74,7 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <ButtonGroup
-                  variant="text"
-                  color="primary"
-                  aria-label="text primary button group"
-                >
-                  <Button onClick={handleClickOpenLogin}>Login</Button>
-                  <Button onClick={handleClickOpenSignup}>Signup</Button>
-                </ButtonGroup>
-
-                <Login open={openLogin} handleCloseLogin={handleCloseLogin} />
-
-                <Signup
-                  open={openSignup}
-                  handleCloseSignup={handleCloseSignup}
-                />
+                <AuthButton />
               </>
             )}
           </div>
