@@ -109,7 +109,7 @@ const UploadForm = () => {
     <ThemeProvider theme={theme}>
       <div className="UploadContainer">
         <div className="UploadWrapper">
-          {isAuthenticated ? (
+          {isAuthenticated || !isAuthenticated ? (
             <>
               <h1 className="UploadH1">Upload your Artworks</h1>
               <Button
