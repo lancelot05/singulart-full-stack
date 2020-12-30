@@ -32,7 +32,7 @@ const AuthButton = () => {
         <Button onClick={handleClickOpenSignup}>Signup</Button>
       </ButtonGroup>
 
-      <Login open={openLogin} handleCloseLogin={handleCloseLogin} />
+      <Login open={openLogin} />
 
       <Signup open={openSignup} handleCloseSignup={handleCloseSignup} />
     </>
