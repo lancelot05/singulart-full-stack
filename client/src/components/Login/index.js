@@ -13,7 +13,7 @@ import Alert from '@material-ui/lab/Alert';
 import { ThemeProvider } from '@material-ui/core';
 import { theme } from '../../MaterialUiTheme';
 
-const Login = ({ open }) => {
+const Login = ({ open, handleCloseLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState(null);
@@ -24,7 +24,7 @@ const Login = ({ open }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const handleEmailLogin = (error) => {
+    const handleEmailLogin = (error, isAuthenticated) => {
       if (error) {
         if (error.id === 'LOGIN_FAIL') {
           setErrorMsg(error.msg.msg);
@@ -32,9 +32,12 @@ const Login = ({ open }) => {
           setErrorMsg(null);
         }
       }
+      if (isAuthenticated) {
+        handleCloseLogin();
+      }
     };
-    handleEmailLogin(error);
-  }, [error]);
+    handleEmailLogin(error, isAuthenticated);
+  }, [error, isAuthenticated, handleCloseLogin]);
 
   const handleChange = (e) => {
     switch (e.target.id) {
@@ -63,9 +66,7 @@ const Login = ({ open }) => {
     <ThemeProvider theme={theme}>
       <Dialog
         open={open}
-        onClose={() => {
-          alert('Dialog Closed');
-        }}
+        onClose={handleCloseLogin}
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="form-dialog-title">Log In To Your Account</DialogTitle>
@@ -111,7 +112,7 @@ const Login = ({ open }) => {
             buttonText="Log in with Google"
             onSuccess={handleLogin}
             onFailure={() => {
-              alert('Failure');
+              console.log('aa');
             }}
             cookiePolicy={'single_host_origin'}
             theme="dark"

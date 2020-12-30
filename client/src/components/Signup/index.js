@@ -145,7 +145,9 @@ const Signup = ({ open, handleCloseSignup }) => {
             clientId="636884656263-1g3od5t2m3o1hrsuh2i9sg8njqpg81m2.apps.googleusercontent.com"
             buttonText="Continue with Google"
             onSuccess={handleLogin}
-            onFailure={handleCloseSignup}
+            onFailure={() => {
+              console.log('aa');
+            }}
             cookiePolicy={'single_host_origin'}
             theme="dark"
           />
