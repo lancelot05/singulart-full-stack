@@ -15,6 +15,7 @@ var authRouter = express.Router();
 authRouter.get('/user', auth, (req, res) => {
   User.findById(req.user.id)
     .select('-password')
+    .populate('favorites.artwork')
     .then((user) => {
       res.json(user);
     });

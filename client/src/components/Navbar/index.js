@@ -49,13 +49,19 @@ const Navbar = () => {
           </a>
           <ul className="NavMenu">
             {isAuthenticated && (
-              <a href="/upload" className="NavItem">
-                Upload
-              </a>
+              <>
+                <a href="/upload" className="NavItem">
+                  Upload
+                </a>
+                <a href="/favorites" className="NavItem">
+                  Favorites
+                </a>
+              </>
             )}
             <a href="/gallery" className="NavItem">
               Artworks
             </a>
+
             <a href="/" className="NavItem">
               Artists
             </a>

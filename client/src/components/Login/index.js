@@ -119,7 +119,7 @@ const Login = ({ open, handleCloseLogin }) => {
           /> */}
           <Button
             variant="contained"
-            color="primary"
+            color="secondary"
             onClick={handleCloseLogin}
           >
             Cancel

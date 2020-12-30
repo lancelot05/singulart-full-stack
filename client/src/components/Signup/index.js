@@ -153,7 +153,7 @@ const Signup = ({ open, handleCloseSignup }) => {
           /> */}
           <Button
             variant="contained"
-            color="primary"
+            color="secondary"
             onClick={handleCloseSignup}
           >
             Cancel

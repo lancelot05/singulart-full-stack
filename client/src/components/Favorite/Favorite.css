@@ -1,0 +1,26 @@
+.GalleryContainer {
+  background-color: #000;
+  padding-top: 80px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.GalleryWrapper {
+  max-width: 1000px;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-items: center;
+  grid-gap: 24px;
+  padding: 50px 50px;
+  justify-content: center;
+}
+
+.FavoritH1 {
+  font-size: 48px;
+  /* line-weight: 1.1; */
+  line-height: 1.6;
+  padding: 1.5rem;
+  color: #fff;
+}

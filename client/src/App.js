@@ -11,6 +11,7 @@ import { loadUser } from './actions/authActions';
 import UploadPage from './pages/UploadPage';
 import { loadArtworks } from './actions/artworkActions';
 import GalleryPage from './pages/GalleryPage';
+import FavoritePage from './pages/FavoritePage';
 
 function App() {
   useEffect(() => {
@@ -26,6 +27,7 @@ function App() {
           <Route path="/login" component={LoginPage} exact />
           <Route path="/upload" component={UploadPage} exact />
           <Route path="/gallery" component={GalleryPage} exact />
+          <Route path="/favorites" component={FavoritePage} exact />
         </Router>
       </div>
     </Provider>

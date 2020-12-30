@@ -17,7 +17,7 @@ const ArtworkCard = ({ info }) => {
 
   const favIds = [];
 
-  favorites.map((doc) => favIds.push(doc.artwork));
+  favorites.map((doc) => favIds.push(doc.artwork._id));
 
   const dispatch = useDispatch();
 
@@ -60,13 +60,9 @@ const ArtworkCard = ({ info }) => {
           <p className="card-text">
             Uploaded By :&nbsp;{info.artist.firstName}
           </p>
-          <p className="card-text">
-            {info.price === 0 ? <>FREE OF COST</> : <>₹&nbsp;{info.price}</>}
-          </p>
+          <p className="card-text">Type :&nbsp;{info.category}</p>
           <button
-            className={`btn ${
-              info.price === 0 || !isAuthenticated ? 'disabled' : ''
-            }`}
+            className="btn"
             // style={{ backgroundColor: '#01bf71', fontWeight: 'bold' }}
             style={
               !favIds.includes(info._id)
