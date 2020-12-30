@@ -10,7 +10,6 @@ import { GoogleLogin } from 'react-google-login';
 import { useDispatch, useSelector } from 'react-redux';
 import { googleAuth, login } from '../../actions/authActions';
 import Alert from '@material-ui/lab/Alert';
-import './index.css';
 import { ThemeProvider } from '@material-ui/core';
 import { theme } from '../../MaterialUiTheme';
 

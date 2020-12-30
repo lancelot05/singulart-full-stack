@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '../Button';
-import './index.css';
+import './Section.css';
 
 const InfoSection = ({
   lightBg,

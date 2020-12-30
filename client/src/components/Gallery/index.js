@@ -2,7 +2,7 @@ import { CircularProgress } from '@material-ui/core';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import ArtworkCard from '../ArtworkCard';
-import './index.css';
+import './Gallery.css';
 
 const Gallery = () => {
   const artwork = useSelector((state) => state.artwork.artwork);

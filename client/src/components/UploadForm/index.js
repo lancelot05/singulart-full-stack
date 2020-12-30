@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import SendIcon from '@material-ui/icons/Send';
 import ClearIcon from '@material-ui/icons/Clear';
-import './index.css';
+import './Upload.css';
 import {
   Button,
   Checkbox,
@@ -107,11 +107,11 @@ const UploadForm = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="Container">
-        <div className="Wrapper">
+      <div className="UploadContainer">
+        <div className="UploadWrapper">
           {isAuthenticated ? (
             <>
-              <h1 className="H1">Upload your Artworks</h1>
+              <h1 className="UploadH1">Upload your Artworks</h1>
               <Button
                 variant="contained"
                 color="primary"
@@ -228,7 +228,7 @@ const UploadForm = () => {
               </Dialog>
             </>
           ) : (
-            <h1 className="H1"> Sign Up to Upload your Artworks</h1>
+            <h1 className="UploadH1"> Sign Up to Upload your Artworks</h1>
           )}
         </div>
       </div>
