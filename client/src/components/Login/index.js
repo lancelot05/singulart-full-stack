@@ -13,7 +13,7 @@ import Alert from '@material-ui/lab/Alert';
 import { ThemeProvider } from '@material-ui/core';
 import { theme } from '../../MaterialUiTheme';
 
-const Login = ({ open, handleClose }) => {
+const Login = ({ open, handleCloseLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState(null);
@@ -33,11 +33,11 @@ const Login = ({ open, handleClose }) => {
         }
       }
       if (isAuthenticated) {
-        handleClose();
+        handleCloseLogin();
       }
     };
     handleEmailLogin(error, isAuthenticated);
-  }, [error, isAuthenticated, handleClose]);
+  }, [error, isAuthenticated, handleCloseLogin]);
 
   const handleChange = (e) => {
     switch (e.target.id) {
@@ -66,7 +66,7 @@ const Login = ({ open, handleClose }) => {
     <ThemeProvider theme={theme}>
       <Dialog
         open={open}
-        onClose={handleClose}
+        onClose={handleCloseLogin}
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="form-dialog-title">Log In To Your Account</DialogTitle>
@@ -111,7 +111,7 @@ const Login = ({ open, handleClose }) => {
             clientId="636884656263-1g3od5t2m3o1hrsuh2i9sg8njqpg81m2.apps.googleusercontent.com"
             buttonText="Log in with Google"
             onSuccess={handleLogin}
-            onFailure={handleClose}
+            onFailure={handleCloseLogin}
             cookiePolicy={'single_host_origin'}
             theme="dark"
           />

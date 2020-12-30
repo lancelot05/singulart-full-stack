@@ -99,9 +99,12 @@ const Navbar = () => {
                   <Button onClick={handleClickOpenSignup}>Signup</Button>
                 </ButtonGroup>
 
-                <Login open={openLogin} handleClose={handleCloseLogin} />
+                <Login open={openLogin} handleCloseLogin={handleCloseLogin} />
 
-                <Signup open={openSignup} handleClose={handleCloseSignup} />
+                <Signup
+                  open={openSignup}
+                  handleCloseSignup={handleCloseSignup}
+                />
               </>
             )}
           </div>

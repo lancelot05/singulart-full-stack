@@ -15,7 +15,7 @@ import Alert from '@material-ui/lab/Alert';
 import { ThemeProvider } from '@material-ui/core';
 import { theme } from '../../MaterialUiTheme';
 
-const Signup = ({ open, handleClose }) => {
+const Signup = ({ open, handleCloseSignup }) => {
   const [email, setEmail] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -36,11 +36,11 @@ const Signup = ({ open, handleClose }) => {
         }
       }
       if (isAuthenticated) {
-        handleClose();
+        handleCloseSignup();
       }
     };
     handleRegister(error, isAuthenticated);
-  }, [error, isAuthenticated, handleClose]);
+  }, [error, isAuthenticated, handleCloseSignup]);
 
   const handleChange = (e) => {
     switch (e.target.id) {
@@ -76,7 +76,7 @@ const Signup = ({ open, handleClose }) => {
     <ThemeProvider theme={theme}>
       <Dialog
         open={open}
-        onClose={handleClose}
+        onClose={handleCloseSignup}
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="form-dialog-title">
@@ -145,7 +145,7 @@ const Signup = ({ open, handleClose }) => {
             clientId="636884656263-1g3od5t2m3o1hrsuh2i9sg8njqpg81m2.apps.googleusercontent.com"
             buttonText="Continue with Google"
             onSuccess={handleLogin}
-            onFailure={handleClose}
+            onFailure={handleCloseSignup}
             cookiePolicy={'single_host_origin'}
             theme="dark"
           />
