@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 // import { Button } from '../Button';
 import Button from '@material-ui/core/Button';
-import './index.css';
+import './Navbar.css';
 import Login from '../Login';
 import Signup from '../Signup';
 import { ButtonGroup, ThemeProvider } from '@material-ui/core';
