@@ -24,7 +24,7 @@ const Login = ({ open, handleCloseLogin }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const handleEmailLogin = (error, isAuthenticated) => {
+    const handleEmailLogin = (error) => {
       if (error) {
         if (error.id === 'LOGIN_FAIL') {
           setErrorMsg(error.msg.msg);
@@ -32,12 +32,9 @@ const Login = ({ open, handleCloseLogin }) => {
           setErrorMsg(null);
         }
       }
-      if (isAuthenticated) {
-        handleCloseLogin();
-      }
     };
     handleEmailLogin(error, isAuthenticated);
-  }, [error, isAuthenticated, handleCloseLogin]);
+  }, [error, isAuthenticated]);
 
   const handleChange = (e) => {
     switch (e.target.id) {
