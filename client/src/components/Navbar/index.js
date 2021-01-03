@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-// import { Button } from '../Button';
+import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
 import Button from '@material-ui/core/Button';
 import './Navbar.css';
 
@@ -9,7 +9,7 @@ import Logout from '../Logout';
 import { theme } from '../../MaterialUiTheme';
 import AuthButton from '../AuthButton';
 
-const Navbar = () => {
+const Navbar = ({ toggle }) => {
   const [scrollNav, setScrollNav] = useState(false);
   const [name, setName] = useState(null);
 
@@ -47,6 +47,9 @@ const Navbar = () => {
           <a href="/" className="NavLogo">
             Singulart
           </a>
+          <div className="MobileIcon" onClick={toggle}>
+            <MenuRoundedIcon fontSize="large" />
+          </div>
           <ul className="NavMenu">
             {isAuthenticated && (
               <>

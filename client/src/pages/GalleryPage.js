@@ -5,7 +5,6 @@ import Navbar from '../components/Navbar';
 const GalleryPage = () => {
   return (
     <>
-      <Navbar />
       <Gallery />
     </>
   );

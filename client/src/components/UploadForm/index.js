@@ -117,6 +117,7 @@ const UploadForm = () => {
                 color="primary"
                 startIcon={<CloudUploadIcon />}
                 onClick={handleOpen}
+                className="UploadButton"
               >
                 Upload
               </Button>

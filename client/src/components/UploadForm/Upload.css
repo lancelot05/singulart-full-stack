@@ -8,9 +8,9 @@
 }
 
 .UploadWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
+  grid-template-areas: 'col1 col2';
 }
 
 .UploadH1 {
@@ -19,4 +19,19 @@
   line-height: 1.6;
   padding: 1.5rem;
   color: #fff;
+  grid-area: 'col1';
+}
+
+.UploadButton {
+  grid-area: 'col2';
+}
+
+@media screen and (max-width: 768px) {
+  .UploadH1 {
+    text-align: center;
+  }
+  .UploadWrapper {
+    width: 100%;
+    grid-template-areas: 'col1' 'col2';
+  }
 }

@@ -7,7 +7,6 @@ import { homeObjOne, homeObjTwo } from '../components/Section/data';
 const HomePage = () => {
   return (
     <div>
-      <Navbar />
       <Carousel />
       <Section {...homeObjTwo} />
       <Section {...homeObjOne} />

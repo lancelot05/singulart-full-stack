@@ -8,8 +8,7 @@ export const homeObjOne = {
     'Get access to our exclusive platform that allows you to buy the artworks which you love from your favorite artists.',
   buttonLabel: 'Get Started',
   imgStart: true,
-  img:
-    'https://images.pexels.com/photos/6076230/pexels-photo-6076230.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+  img: 'https://freepngimg.com/thumb/vector/7-2-vector-png-file.png',
   alt: 'Car',
   dark: true,
   primary: true,
@@ -26,8 +25,7 @@ export const homeObjTwo = {
     'We have artists who give their everything into the art. Art is their life.',
   buttonLabel: 'Explore',
   imgStart: false,
-  img:
-    'https://images.pexels.com/photos/6076230/pexels-photo-6076230.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+  img: 'https://freepngimg.com/thumb/vector/7-2-vector-png-file.png',
   alt: 'Car',
   dark: false,
   primary: false,
@@ -44,8 +42,7 @@ export const homeObjThree = {
     'All you have to do is signup and create a free account. Login if you are already a user.',
   buttonLabel: 'Join',
   imgStart: true,
-  img:
-    'https://images.pexels.com/photos/6076230/pexels-photo-6076230.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+  img: 'https://freepngimg.com/thumb/vector/7-2-vector-png-file.png',
   alt: 'Car',
   dark: false,
   primary: false,

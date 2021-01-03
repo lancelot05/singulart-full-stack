@@ -1,12 +1,13 @@
-.GalleryContainer {
+.FavoriteContainer {
   background-color: #000;
   padding-top: 80px;
   min-height: 100vh;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-.GalleryWrapper {
+.FavoriteWrapper {
   max-width: 1000px;
   margin: 0;
   display: grid;
@@ -17,10 +18,23 @@
   justify-content: center;
 }
 
-.FavoritH1 {
+.FavoriteH1 {
   font-size: 48px;
   /* line-weight: 1.1; */
   line-height: 1.6;
   padding: 1.5rem;
   color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+  .FavoriteContainer {
+    width: 100%;
+  }
+  .FavoriteWrapper {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+  .FavoriteH1 {
+    text-align: center;
+  }
 }

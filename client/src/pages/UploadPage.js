@@ -5,7 +5,6 @@ import UploadForm from '../components/UploadForm';
 const UploadPage = () => {
   return (
     <>
-      <Navbar />
       <UploadForm />
     </>
   );

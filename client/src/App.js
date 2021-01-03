@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -12,8 +12,16 @@ import UploadPage from './pages/UploadPage';
 import { loadArtworks } from './actions/artworkActions';
 import GalleryPage from './pages/GalleryPage';
 import FavoritePage from './pages/FavoritePage';
+import Navbar from './components/Navbar';
+import Sidebar from './components/Sidebar';
 
 function App() {
+  const [open, setOpen] = useState(false);
+
+  const toggle = () => {
+    setOpen(!open);
+  };
+
   useEffect(() => {
     store.dispatch(loadUser());
     store.dispatch(loadArtworks());
@@ -22,6 +30,8 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App">
+        <Sidebar open={open} toggle={toggle} />
+        <Navbar toggle={toggle} />
         <Router>
           <Route path="/" component={HomePage} exact />
           <Route path="/login" component={LoginPage} exact />

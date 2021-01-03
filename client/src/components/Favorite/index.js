@@ -21,11 +21,11 @@ const Favorite = () => {
 
   return (
     <>
-      <div className="GalleryContainer">
-        {favIds.length === 0 && (
-          <h1 className="FavoriteH1"> Nothing to See In Your Favorites</h1>
-        )}
-        <div className="GalleryWrapper">
+      <div className="FavoriteContainer">
+        <div className="FavoriteWrapper">
+          {favIds.length === 0 && (
+            <h1 className="FavoriteH1"> Nothing to See In Your Favorites</h1>
+          )}
           {isLoading || !favIds ? (
             <div className="SpinnerWrapper">
               <CircularProgress color="primary" />

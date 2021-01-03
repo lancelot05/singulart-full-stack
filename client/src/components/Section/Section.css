@@ -98,3 +98,15 @@
   margin: 0 0 10px 0;
   padding-right: 0;
 }
+
+@media screen and (max-width: 768px) {
+  .InfoContainer {
+    padding: 100px 0;
+  }
+  .InfoRow {
+    grid-template-areas: 'col2' 'col1';
+  }
+  .Heading {
+    font-size: 32px;
+  }
+}

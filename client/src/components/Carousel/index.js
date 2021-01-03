@@ -46,7 +46,7 @@ const Carousel = () => {
           ) : (
             <>
               <div className="left" onClick={() => goBack(current, prev, next)}>
-                <ArrowBackIosIcon fontSize="large" />
+                <ArrowBackIosIcon fontSize="small" />
               </div>
               <div className="middleLeft">
                 <ArtworkCard info={artwork[prev]} />
@@ -61,7 +61,7 @@ const Carousel = () => {
                 className="right"
                 onClick={() => goNext(current, prev, next)}
               >
-                <ArrowForwardIosIcon fontSize="large" />
+                <ArrowForwardIosIcon fontSize="small" />
               </div>
             </>
           )}

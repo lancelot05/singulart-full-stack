@@ -3,6 +3,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFavorite, removeFavorite } from '../../actions/artworkActions';
 import Alert from '@material-ui/lab/Alert';
+import './ArtworkCard.css';
 
 const ArtworkCard = ({ info }) => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -48,7 +49,7 @@ const ArtworkCard = ({ info }) => {
 
   return (
     <>
-      <div className="card" style={{ width: '368px', height: '496px' }}>
+      <div className="card">
         <img
           className="card-img-top"
           style={{ height: '18rem' }}
@@ -62,7 +63,7 @@ const ArtworkCard = ({ info }) => {
           </p>
           <p className="card-text">Type :&nbsp;{info.category}</p>
           <button
-            className="btn"
+            className={`btn ${!isAuthenticated ? 'disabled' : ''}`}
             // style={{ backgroundColor: '#01bf71', fontWeight: 'bold' }}
             style={
               !favIds.includes(info._id)

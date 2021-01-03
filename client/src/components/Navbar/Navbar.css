@@ -17,6 +17,7 @@
   height: 80px;
   padding: 0px 24px;
   min-width: 90%;
+  align-items: center;
 }
 
 .NavLogo {
@@ -29,6 +30,10 @@
   text-decoration: none;
   padding: 12px;
   flex: 15%;
+}
+
+.MobileIcon {
+  display: none;
 }
 
 .NavMenu {
@@ -64,4 +69,29 @@
   text-transform: uppercase;
   margin: auto 6px;
   font-size: 1 rem;
+}
+
+@media screen and (max-width: 768px) {
+  .NavItem {
+    display: none;
+  }
+  .ButtonWrapper {
+    display: none;
+  }
+  .NavBtn {
+    display: none;
+  }
+  .MobileIcon {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-100%, 40%);
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #fff;
+  }
+  .Navbar {
+    max-width: 100%;
+  }
 }

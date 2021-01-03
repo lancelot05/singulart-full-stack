@@ -4,6 +4,7 @@
   min-height: 100vh;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .GalleryWrapper {
@@ -15,4 +16,14 @@
   grid-gap: 24px;
   padding: 50px 50px;
   justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+  .GalleryContainer {
+    width: 100%;
+  }
+  .GalleryWrapper {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
 }
